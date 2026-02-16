@@ -1,0 +1,7 @@
+strategy,params,test_sharpe,test_return,test_maxdd,test_hit,test_trades,test_va_sharpe,test_va_return,bh_return,alpha,train_sharpe,val_sharpe
+Momentum+Stop,"{'sma_short': 15, 'sma_long': 50, 'trailing_stop': 0.15, 'max_loss': 0.1}",0.3864,0.0882,-0.236,0.48,6,0.7006,0.0467,0.1354,-0.04719999999999999,7.2009,26.1761
+Market Contrarian,"{'z_threshold': 0.5, 'lookback': 30}",-0.1593,-0.0308,-0.4841,0.5273,60,0.1839,0.0274,0.1354,-0.1662,8.7958,0.1808
+ML Direction,"{'n_features': 20, 'prob_threshold': 0.58, 'max_depth': 5}",2.7729,0.489,-0.2033,0.5714,26,1.5799,0.0924,0.1354,0.3536,0.8525,4505.1574
+Multi-TF Momentum,"{'periods': (10, 20, 50), 'strength_div': 0.2}",-0.4877,-0.1061,-0.3327,0.3438,15,-0.1621,0.0084,0.1354,-0.2415,7.1216,113.1679
+Mean Reversion,"{'z_threshold': 1.5, 'lookback': 10}",0.9532,0.1749,-0.2265,0.5,49,0.4808,0.0379,0.1354,0.03950000000000001,0.1838,1.1201
+Combined Best,"{'w_peer': 0.2, 'w_contra': 0.4, 'w_mtf': 0.3, 'w_mr': 0.3}",2.0701,0.2282,-0.1338,0.5301,82,1.4004,0.0566,0.1354,0.0928,1.66,5.2457
