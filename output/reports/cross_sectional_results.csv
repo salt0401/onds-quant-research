@@ -1,0 +1,29 @@
+ticker,strategy,sharpe,total_return,annual_return,max_drawdown,hit_rate,n_trades,n_days
+ONDS,Momentum+Stop,0.3864,0.0882,0.2926,-0.236,0.48,6,83
+RCAT,Momentum+Stop,1.0572,0.1691,0.6071,-0.2949,0.5625,5,83
+AVAV,Momentum+Stop,-1.5802,-0.185,-0.4627,-0.1586,0.2857,5,83
+KTOS,Momentum+Stop,-0.4931,-0.0597,-0.1705,-0.1965,0.4706,8,83
+JOBY,Momentum+Stop,-2.0947,-0.2113,-0.5137,-0.2106,0.3636,9,83
+LMT,Momentum+Stop,4.8851,0.296,1.197,-0.0523,0.6571,3,83
+RTX,Momentum+Stop,0.9995,0.0757,0.2481,-0.0716,0.5862,9,83
+ONDS,Multi-TF Momentum,-0.4877,-0.1061,-0.2887,-0.3327,0.3438,15,83
+RCAT,Multi-TF Momentum,0.0928,0.0362,0.114,-0.2237,0.5,13,83
+AVAV,Multi-TF Momentum,-1.3222,-0.2588,-0.5971,-0.3397,0.4231,8,83
+KTOS,Multi-TF Momentum,0.041,0.0213,0.0662,-0.1898,0.4737,10,83
+JOBY,Multi-TF Momentum,-1.0735,-0.248,-0.579,-0.4454,0.4474,22,83
+LMT,Multi-TF Momentum,2.8263,0.1848,0.6734,-0.0823,0.5366,20,83
+RTX,Multi-TF Momentum,-0.3702,-0.0036,-0.011,-0.0718,0.5294,25,83
+ONDS,Mean Reversion,0.9532,0.1749,0.6313,-0.2265,0.5,49,83
+RCAT,Mean Reversion,-1.5265,-0.4104,-0.799,-0.4709,0.4651,49,83
+AVAV,Mean Reversion,-1.6615,-0.2609,-0.6007,-0.2801,0.3947,46,83
+KTOS,Mean Reversion,-1.9067,-0.3774,-0.7627,-0.4286,0.3684,48,83
+JOBY,Mean Reversion,-1.42,-0.175,-0.4424,-0.2603,0.4722,51,83
+LMT,Mean Reversion,-1.9154,-0.0924,-0.2549,-0.1221,0.3514,50,83
+RTX,Mean Reversion,-2.0492,-0.0646,-0.1835,-0.09,0.4545,45,83
+ONDS,Market Contrarian,-0.1593,-0.0308,-0.0906,-0.4841,0.5273,60,83
+RCAT,Market Contrarian,-1.1537,-0.3541,-0.7347,-0.427,0.4727,60,83
+AVAV,Market Contrarian,-2.1298,-0.3536,-0.7341,-0.3641,0.3636,60,83
+KTOS,Market Contrarian,-1.423,-0.3008,-0.6625,-0.3345,0.4727,60,83
+JOBY,Market Contrarian,-1.0595,-0.1508,-0.3912,-0.2199,0.4182,60,83
+LMT,Market Contrarian,0.123,0.023,0.0715,-0.0735,0.5455,60,83
+RTX,Market Contrarian,-2.1268,-0.1114,-0.3014,-0.1296,0.5455,60,83
