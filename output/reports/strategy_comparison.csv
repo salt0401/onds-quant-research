@@ -1,0 +1,7 @@
+Strategy,Sharpe,Annual Return,Annual Vol,Max Drawdown,Hit Rate,Total Return,# Trades
+Technical Composite,0.214,+23.07%,84.45%,-67.55%,52.28%,+192.51%,304
+Sector Momentum,-0.3915,-9.03%,35.84%,-54.63%,50.52%,-38.69%,898
+Cross-Asset,-0.3446,+3.04%,5.68%,-9.98%,57.89%,+16.77%,42
+Reddit Sentiment,24.9952,+8715.64%,348.49%,-47.00%,56.60%,+314.52%,52
+News Sentiment,-0.1159,-12.24%,148.73%,-62.10%,57.69%,-2.51%,33
+Multi-Source Fusion,-0.6225,-49.20%,87.07%,-98.55%,53.67%,-96.99%,461

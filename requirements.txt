@@ -1,0 +1,35 @@
+# ONDS Quantitative Research - Dependencies
+# Core
+pandas>=2.0
+numpy>=1.24
+scipy>=1.10
+
+# Data collection
+yfinance>=0.2.30
+requests>=2.28
+beautifulsoup4>=4.12
+lxml>=4.9
+
+# Technical analysis
+pandas_ta>=0.3.14
+
+# NLP / Sentiment
+transformers>=4.30
+torch>=2.0
+vaderSentiment>=3.3.2
+
+# Machine Learning
+scikit-learn>=1.3
+hmmlearn>=0.3
+xgboost>=2.0
+shap>=0.42
+
+# Statistics
+statsmodels>=0.14
+
+# Visualization
+matplotlib>=3.7
+seaborn>=0.13
+
+# Progress
+tqdm>=4.65
