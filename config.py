@@ -54,8 +54,8 @@ ALL_TICKERS = (
 )
 
 # ── Date range ────────────────────────────────────────────────
-DATA_START = "2020-01-01"
-DATA_END   = "2026-02-15"
+DATA_START = "2025-01-01"
+DATA_END   = "2026-02-16"
 
 # ── API Keys (set via environment variables) ──────────────────
 FINNHUB_API_KEY   = os.getenv("FINNHUB_API_KEY", "")
