@@ -1,0 +1,9 @@
+Strategy,Bootstrap Sharpe,95% CI Low,95% CI High,P(Sharpe>0),Perm p-value,Perm Pctl
+Momentum+Stop,+1.9484,-0.0577,+3.8747,97.1%,,
+Momentum+Stop (VolAdj),+1.9306,-0.2096,+3.8555,96.3%,0.0205,98.0%
+Market Contrarian,+1.1648,-0.6272,+2.8641,90.1%,,
+Market Contrarian (VolAdj),+1.0423,-0.7820,+2.8545,87.3%,0.0640,93.6%
+Adaptive Ensemble,+1.4866,-0.3285,+3.2751,94.5%,0.0385,96.2%
+Adaptive Ensemble (VolAdj),+0.8362,-1.0532,+2.6793,81.8%,,
+Multi-TF Momentum (VolAdj),+0.9205,-1.0189,+2.7557,83.1%,,
+ML Direction (top-15),+2.1953,+0.3888,+3.8508,98.9%,0.0085,99.2%
