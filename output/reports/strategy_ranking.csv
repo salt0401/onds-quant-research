@@ -1,0 +1,31 @@
+rank,name,sharpe,total_return,max_drawdown,hit_rate,n_trades
+1,ML Direction (top-15),4.0567,3.1447,-0.2614,0.6182,86
+2,Momentum+Stop,3.3581,3.3421,-0.4233,0.5437,30
+3,Momentum+Stop (VolAdj),2.3915,0.6137,-0.1095,0.5437,118
+4,Adaptive Ensemble,1.7902,0.7079,-0.2186,0.5462,216
+5,Market Contrarian,1.2365,0.8806,-0.3512,0.5847,167
+6,Market Contrarian (VolAdj),1.1068,0.238,-0.0844,0.5847,179
+7,Combined Best,1.0856,0.4107,-0.1824,0.5288,251
+8,Multi-TF Momentum (VolAdj),1.0222,0.3376,-0.161,0.5092,196
+9,Adaptive Ensemble (VolAdj),0.9344,0.1393,-0.0585,0.5462,238
+10,Multi-TF Momentum,0.9022,1.0609,-0.576,0.5092,66
+11,DIX Enhanced (VolAdj),0.6653,0.1974,-0.1849,0.5297,238
+12,Regime Conditional,0.5307,0.4625,-0.4415,0.5216,45
+13,DIX Enhanced,0.519,0.4941,-0.5787,0.5297,153
+14,Combined Best (VolAdj),0.4151,0.0906,-0.0497,0.5097,259
+15,ML Regression Signal,0.3564,0.2891,-0.3282,0.4348,131
+16,Regime Conditional (VolAdj),0.1545,0.0831,-0.1275,0.5019,259
+17,Gap Fade,0.0575,0.0868,-0.3026,0.6129,53
+18,Peer Lead-Lag,-0.0122,0.0473,-0.4816,0.4554,230
+19,Peer Lead-Lag (VolAdj),-0.0739,0.043,-0.1464,0.4554,246
+20,Gap Fade (VolAdj),-0.0884,0.0436,-0.0709,0.6129,55
+21,RSI Divergence,-0.2583,0.0062,-0.1237,0.5,24
+22,Volume Spike,-0.3045,-0.0575,-0.1993,0.5455,16
+23,Mean Reversion,-0.3268,-0.1196,-0.4301,0.5116,128
+24,Volume Spike (VolAdj),-0.4598,0.0107,-0.0404,0.5455,18
+25,Mean Reversion (VolAdj),-0.6798,-0.0357,-0.1371,0.5116,141
+26,Vol Breakout,-1.1412,-0.5151,-0.612,0.451,56
+27,BB Mean Reversion,-1.235,-0.6722,-0.7454,0.504,118
+28,RSI Divergence (VolAdj),-1.2748,0.0065,-0.0219,0.5,28
+29,Vol Breakout (VolAdj),-1.5603,-0.1119,-0.1627,0.451,74
+30,BB Mean Reversion (VolAdj),-1.949,-0.2558,-0.2987,0.504,155
