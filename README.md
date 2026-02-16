@@ -165,6 +165,24 @@ export REDDIT_SECRET="your_secret"
 - CEO: Eric Brock (@CeoOndas on X)
 - Peer universe: RCAT, AVAV, KTOS, JOBY, LMT, RTX
 
+## Future Improvements
+
+### CEO Twitter/X Sentiment (Plan 7)
+- **Goal**: Scrape tweets from @CeoOndas (Eric Brock) and analyze sentiment around key announcements
+- **Tool**: `twscrape` (installed) — requires X account authentication
+- **Setup**: Run `python -m twscrape add_accounts "username" "password" "email" "email_password"` then `python -m twscrape login_accounts`
+- **Alternative**: Apply for X API developer access at [developer.twitter.com](https://developer.twitter.com)
+- **Analysis**: Score tweets with FinBERT, compute event-window returns around tweet bursts
+- **Status**: Framework built (`analysis/sentiment.py` supports Twitter), awaiting authentication
+
+### Additional Enhancements
+- **Real-time dark pool**: Integrate live SqueezeMetrics DIX/GEX feed (requires subscription)
+- **Intraday options flow**: Monitor unusual options activity via CBOE/OPRA data
+- **Insider transactions**: Track SEC Form 4 filings for ONDS insiders (via SEC EDGAR API)
+- **Reddit real-time**: Use PRAW (Reddit API) for streaming sentiment instead of JSON API snapshots
+- **Ensemble tuning**: Hyperparameter optimization (Optuna), SHAP feature explanations, neural network models
+- **Portfolio optimization**: Mean-variance or risk-parity allocation across multiple signal strategies
+
 ## License
 
 Academic and research use. Part of a graduation thesis on multi-signal quantitative analysis.

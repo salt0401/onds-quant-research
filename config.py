@@ -5,6 +5,13 @@ All paths, tickers, API keys, and parameters in one place.
 import os
 from pathlib import Path
 
+# Load .env file if present (API keys, credentials)
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).resolve().parent / ".env")
+except ImportError:
+    pass  # python-dotenv not installed, use os.environ directly
+
 # ── Project root ──────────────────────────────────────────────
 PROJECT_ROOT = Path(__file__).resolve().parent
 DATA_RAW     = PROJECT_ROOT / "data" / "raw"

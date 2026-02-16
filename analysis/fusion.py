@@ -27,6 +27,7 @@ def build_feature_matrix(
     darkpool_signal: pd.Series = None,
     regime_df: pd.DataFrame = None,
     analyst_signal: pd.Series = None,
+    short_volume_df: pd.DataFrame = None,
 ) -> pd.DataFrame:
     """
     Merge all feature sources into a single feature matrix aligned by date.
@@ -79,6 +80,11 @@ def build_feature_matrix(
     # Analyst
     if analyst_signal is not None and not analyst_signal.empty:
         features["analyst_signal"] = analyst_signal
+
+    # Short volume (ONDS-specific FINRA data)
+    if short_volume_df is not None and not short_volume_df.empty:
+        for col in short_volume_df.columns:
+            features[f"sv_{col}"] = short_volume_df[col]
 
     # Forward-fill NaN from low-frequency sources
     features = features.ffill().bfill()

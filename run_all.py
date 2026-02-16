@@ -187,28 +187,56 @@ def run_plan_4():
     """Plan 4: Dark Pool Analysis."""
     banner("PLAN 4: DARK POOL ANALYSIS")
     from collectors.prices import load_prices
-    from analysis.darkpool import (load_dix_data, analyze_dix_predictive_power,
-                                    generate_darkpool_signal, plot_dix_analysis)
+    from analysis.darkpool import (load_dix_data, load_chartexchange_data,
+                                    analyze_dix_predictive_power, analyze_short_volume,
+                                    generate_darkpool_signal, generate_short_volume_signal,
+                                    plot_dix_analysis, plot_short_volume)
     from backtests.engine import backtest, print_results
 
     prices = load_prices(TARGET_TICKER)
-    dix_df = load_dix_data()
+    all_results = []
 
+    # Part A: DIX/GEX (market-wide dark pool indicator)
+    dix_df = load_dix_data()
     if not dix_df.empty:
-        section("4a. DIX predictive power")
+        section("4a. DIX/GEX predictive power")
         analyze_dix_predictive_power(dix_df, prices)
 
-        section("4b. DIX visualization")
+        section("4b. DIX/GEX visualization")
         plot_dix_analysis(dix_df, prices)
 
-        section("4c. Backtest dark pool signal")
+        section("4c. Backtest DIX/GEX signal")
         signal = generate_darkpool_signal(dix_df)
         results = backtest(prices["Close"], signal, name="Dark Pool (DIX/GEX)")
         print_results(results)
-        return results
+        all_results.append(results)
     else:
-        print("  No dark pool data available. Skipping backtest.")
-        return None
+        print("  No DIX/GEX data available.")
+
+    # Part B: ONDS-specific short volume (FINRA/ChartExchange)
+    sv_df = load_chartexchange_data()
+    if not sv_df.empty:
+        section("4d. ONDS short volume predictive power")
+        analyze_short_volume(sv_df, prices)
+
+        section("4e. ONDS short volume visualization")
+        plot_short_volume(sv_df, prices)
+
+        section("4f. Backtest ONDS short volume signal")
+        sv_signal = generate_short_volume_signal(sv_df)
+        sv_results = backtest(prices["Close"], sv_signal, name="Short Volume (ONDS)")
+        print_results(sv_results)
+        all_results.append(sv_results)
+
+        # Save short volume features for fusion
+        sv_features = sv_df[["short_ratio", "off_exchange_short", "total_reported"]].copy()
+        sv_features.columns = ["short_ratio", "off_exchange_ratio", "finra_volume"]
+        sv_features.to_csv(DATA_PROC / "onds_short_volume_features.csv")
+        print(f"  Saved short volume features: {DATA_PROC / 'onds_short_volume_features.csv'}")
+    else:
+        print("  No ONDS short volume data available.")
+
+    return all_results[0] if all_results else None
 
 
 def run_plan_5():
@@ -402,6 +430,7 @@ def run_plan_12(all_results: dict):
         "reddit": ("reddit_daily_sentiment.csv", "date"),
         "news": ("news_daily_sentiment.csv", "date"),
         "regime": ("regimes_hmm.csv", None),
+        "short_volume": ("onds_short_volume_features.csv", None),
     }
     loaded = {}
     for name, (fname, idx_col) in sources.items():
@@ -419,6 +448,7 @@ def run_plan_12(all_results: dict):
     reddit_sent = loaded["reddit"]
     news_sent = loaded["news"]
     regime_df = loaded["regime"]
+    short_vol = loaded.get("short_volume")
 
     section("12a. Build feature matrix")
     from config import DATA_FEAT
@@ -431,6 +461,7 @@ def run_plan_12(all_results: dict):
         reddit_sentiment=reddit_sent,
         news_sentiment=news_sent,
         regime_df=regime_df,
+        short_volume_df=short_vol,
     )
     features.to_csv(DATA_FEAT / "full_feature_matrix.csv")
 
