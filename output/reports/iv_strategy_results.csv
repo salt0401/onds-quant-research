@@ -1,0 +1,7 @@
+Strategy,Train Sharpe,Test Sharpe,Gap
+VRP Mean Reversion,0.4194,-0.1747,0.5941
+IV Regime Conditional,6.099,7.9343,1.8353000000000002
+Vol Surface Composite,-0.8317,-0.056,0.7757
+VRP Mean Reversion (VolAdj),0.2137,-0.2031,0.4168
+IV Regime Conditional (VolAdj),2.8059,2.3623,0.4436
+Vol Surface Composite (VolAdj),-0.6652,0.3299,0.9951000000000001

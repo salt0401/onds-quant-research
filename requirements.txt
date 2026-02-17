@@ -22,6 +22,7 @@ vaderSentiment>=3.3.2
 scikit-learn>=1.3
 hmmlearn>=0.3
 xgboost>=2.0
+lightgbm>=4.0
 shap>=0.42
 
 # Statistics
