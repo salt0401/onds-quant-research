@@ -1,6 +1,6 @@
 # ONDS Multi-Signal Quantitative Research
 
-A comprehensive quantitative research framework analyzing **Ondas Holdings (ONDS)** from 14 different signal perspectives. Combines NLP sentiment analysis (Reddit, news), technical indicators, cross-asset signals (gold, silver, bitcoin, VIX), dark pool data, options/IV analysis, sector analysis (drone/defense peers), event studies, regime detection, **leakage-free ML models**, and **IV surface strategies** into a unified research pipeline.
+A comprehensive quantitative research framework analyzing **Ondas Holdings (ONDS)** from 16 different signal perspectives. Combines NLP sentiment analysis (Reddit, news), technical indicators, cross-asset signals (gold, silver, bitcoin, VIX), dark pool data, options/IV analysis, sector analysis (drone/defense peers), event studies, regime detection, **leakage-free ML models**, **IV surface strategies**, and a **meta-ensemble stacking** approach into a unified research pipeline.
 
 ## Key Findings
 
@@ -47,6 +47,24 @@ The original ML pipeline (Plan 13) reported a Sharpe of +4.06 for the ML Directi
 | Vol Surface Composite | -- | -- | -- |
 
 > **Note:** Run `python analysis/iv_surface.py` to populate these numbers.
+
+### Meta-Ensemble (Plan 16)
+
+Combines ALL 18 signals (12 rule-based + 3 IV-based + 3 ML walk-forward) into two meta-strategies using stacking:
+
+- **ML Meta-Ensemble**: LogReg(ElasticNet) stacker on ~47 meta-features (18 L1 signals + 19 distribution features + 7 IV proxies + 3 SSVI statics). Walk-forward with 80-day rolling window + 3-day purge.
+- **Rank-Weighted Ensemble**: Trailing 40-day Sharpe-weighted average (non-ML benchmark).
+
+New distribution features (THE missing 4th moment and more):
+- Log-return kurtosis, skewness, mean, std (5d/10d/20d windows)
+- Jarque-Bera normality test, tail ratio, Hurst exponent (20d)
+
+| Strategy | Full Sharpe | Train Sharpe | Test Sharpe | Gap | P(Sharpe>0) |
+|----------|------------|-------------|------------|-----|-------------|
+| ML Meta-Ensemble | -- | -- | -- | -- | -- |
+| Rank-Weighted Ensemble | -- | -- | -- | -- | -- |
+
+> **Note:** Run `python analysis/meta_ensemble.py` to populate these numbers.
 
 ### Base Analysis Results (Plans 1-12)
 
@@ -109,11 +127,18 @@ Leakage-Free ML (Plan 14) ** NEW **
 +-- Full validation: 60/10/30 split + bootstrap CI + permutation test + Bayesian
 +-- Fixed Adaptive Ensemble (holdout-based weights)
 
-IV Surface Analysis (Plan 15) ** NEW **
+IV Surface Analysis (Plan 15)
 +-- SSVI model (Gatheral & Jacquier 2014) fitted to ONDS options
 +-- 7 IV-proxy features for daily backtesting
 +-- 3 IV-based trading strategies
 +-- ML integration: test IV feature uplift
+
+Meta-Ensemble (Plan 16) ** NEW **
++-- 19 distribution features (log moments, kurtosis, JB, Hurst, SSVI)
++-- 18 Level 1 signals (12 rule + 3 IV + 3 ML walk-forward)
++-- ML Meta-Ensemble (LogReg ElasticNet stacker, ~47 features)
++-- Rank-Weighted Ensemble (trailing Sharpe benchmark)
++-- Full validation: 60/10/30 + bootstrap + permutation + Bayesian
 ```
 
 ## Directory Structure
@@ -147,7 +172,8 @@ ONDS_Research/
 |   +-- alpha_decay.py          # Alpha persistence / decay analysis
 |   +-- train_test_validation.py # Train/test split validation
 |   +-- ml_models.py            # ** NEW ** Leakage-free 6-model ML pipeline
-|   +-- iv_surface.py           # ** NEW ** SSVI + IV features + IV strategies
+|   +-- iv_surface.py           # SSVI + IV features + IV strategies
+|   +-- meta_ensemble.py       # ** NEW ** Meta-ensemble stacking (Plan 16)
 +-- backtests/
 |   +-- engine.py               # Shared backtest framework
 +-- data/
@@ -180,8 +206,11 @@ python analysis/advanced_research.py
 # Run leakage-free ML comparison (6 models) ** NEW **
 python analysis/ml_models.py
 
-# Run IV surface analysis ** NEW **
+# Run IV surface analysis
 python analysis/iv_surface.py
+
+# Run meta-ensemble stacking (Plan 16) ** NEW **
+python analysis/meta_ensemble.py
 
 # Run robustness validation (bootstrap, permutation tests)
 python analysis/robustness.py
@@ -212,7 +241,10 @@ export REDDIT_SECRET="your_secret"
 - `ml_train_test_gap.png` -- ** NEW ** Train vs Test Sharpe scatter (overfitting diagnostic)
 - `ssvi_onds_surface.png` -- ** NEW ** SSVI arbitrage-free IV surface
 - `iv_proxy_features.png` -- ** NEW ** 7 IV proxy feature time series
-- `iv_strategy_equity.png` -- ** NEW ** IV strategy equity curves
+- `iv_strategy_equity.png` -- IV strategy equity curves
+- `signal_correlation_heatmap.png` -- ** NEW ** 18x18 Level 1 signal correlation
+- `meta_ensemble_equity.png` -- ** NEW ** Meta-ensemble equity curves
+- `meta_feature_importance.png` -- ** NEW ** LogReg coefficients (top 25)
 - 30x backtest equity curves (`bt_*.png`)
 
 ### Reports
@@ -222,7 +254,9 @@ export REDDIT_SECRET="your_secret"
 - `robustness_report.csv` -- Bootstrap CI, permutation p-values
 - `ml_model_comparison.csv` -- ** NEW ** 6-model comparison with all validation metrics
 - `iv_surface_analysis.csv` -- ** NEW ** SSVI fit parameters and quality
-- `iv_strategy_results.csv` -- ** NEW ** IV strategy backtest results
+- `iv_strategy_results.csv` -- IV strategy backtest results
+- `meta_ensemble_results.csv` -- ** NEW ** Meta-ensemble validation metrics
+- `signal_correlation_matrix.csv` -- ** NEW ** 18x18 signal pairwise correlation
 
 ### Data Files
 - `technical_predictive_power.csv` -- Spearman correlations for each indicator
@@ -290,6 +324,8 @@ Where k = log-moneyness, theta = ATM total variance, rho = skew, phi = vol-of-vo
 - **VRP Mean Reversion**: High VRP (fear) + ONDS oversold -> long
 - **IV Regime Conditional**: Low-VIX: momentum; High-VIX: mean-reversion
 - **Vol Surface Composite**: Weighted VRP z-score + IV rank + skew proxy
+- **ML Meta-Ensemble**: LogReg(ElasticNet) stacking 18 signals + 19 distribution features + 7 IV proxies (walk-forward, 80d train, 3d purge)
+- **Rank-Weighted Ensemble**: Trailing 40-day Sharpe-weighted average of 18 signals (non-ML benchmark)
 - **Volatility-adjusted**: Scale positions inversely to 20-day realized vol targeting 30% annualized portfolio vol
 
 ### Robustness Testing
